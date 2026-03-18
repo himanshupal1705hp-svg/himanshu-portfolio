@@ -5,33 +5,25 @@
 
   <style>
     body {
-      background: #050505;
+      margin: 0;
+      background: black;
       color: #00ffc3;
       font-family: monospace;
       text-align: center;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     h1 {
-      margin-top: 60px;
+      margin-top: 80px;
       font-size: 42px;
-      text-shadow: 0 0 10px #00ffc3, 0 0 30px #00ffc3;
-    }
-
-    .type {
-      border-right: 2px solid #00ffc3;
-      white-space: nowrap;
-      overflow: hidden;
-      display: inline-block;
-      animation: typing 3s steps(30), blink 0.5s infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
+      text-shadow: 0 0 20px #00ffc3;
     }
 
     .container {
@@ -47,88 +39,113 @@
       width: 280px;
       border-radius: 15px;
       border: 1px solid #00ffc322;
-      box-shadow: 0 0 10px #00ffc322;
+      box-shadow: 0 0 15px #00ffc322;
       transition: 0.3s;
     }
 
     .card:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffc3aa;
+      box-shadow: 0 0 25px #00ffc3aa;
     }
 
-    .stat {
-      font-size: 28px;
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      background: #00ffc3;
+      color: black;
+      border-radius: 10px;
       font-weight: bold;
-      color: #00ffcc;
+      cursor: pointer;
+      margin-top: 10px;
     }
 
-    a {
-      color: #00ffc3;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-shadow: 0 0 10px #00ffc3;
+    .btn:hover {
+      box-shadow: 0 0 15px #00ffc3;
     }
   </style>
 </head>
 
 <body>
 
+<canvas id="bg"></canvas>
+
 <h1>Hi, I'm Himanshu 🚀</h1>
-<p class="type">Building in Public | Web3 | Future Dev</p>
+<p>Web3 Builder | Learning in Public</p>
+
+<!-- 🎯 HIRE ME BUTTON -->
+<button class="btn" onclick="window.location.href='https://x.com/HimanshuWeb3_17'">
+  💼 Hire Me
+</button>
 
 <div class="container">
 
-  <!-- 🧠 LIVE STATS -->
+  <!-- 🧠 GITHUB STATS -->
   <div class="card">
-    <h2>🧠 Live Stats</h2>
-    <p class="stat">50+</p>
-    <p>Daily X Posts</p>
-
-    <p class="stat">10+</p>
-    <p>Projects Explored</p>
-
-    <p class="stat">100%</p>
-    <p>Learning Mode</p>
+    <h2>🧠 GitHub Stats</h2>
+    <img src="https://github-readme-stats.vercel.app/api?username=YOUR-USERNAME&theme=dark" width="100%">
   </div>
 
-  <!-- 🪙 CRYPTO DASHBOARD -->
-  <div class="card">
-    <h2>🪙 Crypto Mode</h2>
-    <p>Tracking Airdrops 🚀</p>
-    <p>Testing Web3 Apps ⚡</p>
-    <p>Exploring Ecosystems 🌍</p>
-  </div>
-
-  <!-- 📊 PROOF OF WORK -->
+  <!-- 📊 POW -->
   <div class="card">
     <h2>📊 Proof of Work</h2>
-    <ul>
-      <li>Active on X daily</li>
-      <li>Engaging in Web3 communities</li>
-      <li>Learning dev + tools</li>
-    </ul>
+    <p>Daily Web3 posts</p>
+    <p>Airdrop hunter</p>
+    <p>Learning dev</p>
   </div>
 
-  <!-- 🔗 SOCIAL -->
+  <!-- 🪙 CRYPTO -->
   <div class="card">
-    <h2>🔗 Connect</h2>
-    <p><a href="https://x.com/HimanshuWeb3_17" target="_blank">X Profile</a></p>
-    <p><a href="#">GitHub (Add later)</a></p>
+    <h2>🪙 Crypto Mode</h2>
+    <p>Tracking BTC & Airdrops</p>
+    <p>Exploring ecosystems</p>
   </div>
 
 </div>
 
-<!-- 🐦 TWITTER EMBED -->
-<script async src="https://platform.twitter.com/widgets.js"></script>
+<!-- 🔥 PARTICLE ANIMATION -->
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
 
-<div class="card">
-  <h2>🐦 Latest Activity</h2>
-  <blockquote class="twitter-tweet">
-    <a href="https://twitter.com/HimanshuWeb3_17"></a>
-  </blockquote>
-</div>
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 100; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    d: Math.random() * 2
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#00ffc3";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  update();
+}
+
+function update() {
+  particles.forEach(p => {
+    p.y += p.d;
+    if (p.y > canvas.height) {
+      p.y = 0;
+      p.x = Math.random() * canvas.width;
+    }
+  });
+}
+
+setInterval(draw, 30);
+</script>
 
 </body>
 </html>
