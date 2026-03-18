@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Himanshu Portfolio</title>
+
+  <style>
+    body {
+      background: black;
+      color: #00ffcc;
+      font-family: monospace;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 80px;
+      font-size: 40px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ffcc; }
+      to { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc; }
+    }
+
+    .card {
+      background: #0a0a0a;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #00ffcc33;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffcc55;
+    }
+
+    .type {
+      border-right: 2px solid #00ffcc;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(30), blink 0.5s infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Hi, I'm Himanshu 🚀</h1>
+<p class="type">Web3 Explorer | Building in Public</p>
+
+<div class="card">
+  <h2>⚡ Skills</h2>
+  <p>Learning React, Web3, Airdrops, Dev Basics</p>
+</div>
+
+<div class="card">
+  <h2>🚀 Projects</h2>
+  <p>Sharing my Web3 journey & experiments</p>
+</div>
+
+</body>
+</html>
+<div class="card">
+  <h2>📊 Proof of Work</h2>
+  <ul>
+    <li>Active on X (daily Web3 posts)</li>
+    <li>Participated in airdrops</li>
+    <li>Learning dev + Web3 tools</li>
+  </ul>
+</div>
+<div class="card">
+  <h2>🐦 My X Profile</h2>
+  <a href="https://x.com/HimanshuWeb3_17" target="_blank">
+    Visit My Profile
+  </a>
+</div>
+<script async src="https://platform.twitter.com/widgets.js"></script>
+
+<div class="card">
+  <blockquote class="twitter-tweet">
+    <a href="https://twitter.com/HimanshuWeb3_17"></a>
+  </blockquote>
+</div>
