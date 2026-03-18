@@ -12,17 +12,15 @@
       overflow-x: hidden;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
-    /* 🌌 BACKGROUND */
+    /* 🌌 BACKGROUND (FIXED ONLINE IMAGE) */
     .bg {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: url('bg.jpg') no-repeat center/cover;
-      opacity: 0.25;
+      background: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?q=80&w=2070&auto=format&fit=crop') no-repeat center/cover;
+      opacity: 0.3;
       z-index: -1;
     }
 
@@ -34,12 +32,9 @@
 
     h1 {
       font-size: 48px;
-      text-shadow: 0 0 10px #00ffc3,
-                   0 0 30px #00ffc3,
-                   0 0 60px #00ffc3;
+      text-shadow: 0 0 10px #00ffc3,0 0 30px #00ffc3,0 0 60px #00ffc3;
     }
 
-    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -47,7 +42,6 @@
       margin-top: 30px;
     }
 
-    /* CARDS */
     .card {
       background: rgba(10,10,10,0.7);
       backdrop-filter: blur(12px);
@@ -65,24 +59,15 @@
       transform: translateY(0);
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px #00ffc3aa;
-    }
-
-    /* BUTTON */
     .btn {
-      margin-top: 15px;
       padding: 12px 25px;
       background: #00ffc3;
       border: none;
       border-radius: 10px;
-      font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px #00ffc3;
+      margin-top: 10px;
     }
 
-    /* CHATBOX */
     #chatbox {
       position: fixed;
       bottom: 20px;
@@ -92,17 +77,15 @@
       border: 1px solid #00ffc3;
       border-radius: 15px;
       padding: 15px;
-      box-shadow: 0 0 20px #00ffc355;
     }
 
     input {
-      width: 75%;
+      width: 70%;
       padding: 8px;
       border-radius: 5px;
       border: none;
     }
 
-    /* LOADER */
     #loader {
       position: fixed;
       width: 100%;
@@ -114,150 +97,154 @@
       z-index: 9999;
     }
 
-    #loader h1 {
-      color: #00ffc3;
-      text-shadow: 0 0 20px #00ffc3;
-      animation: fadeIn 2s ease-in-out;
+    /* Cursor */
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: #00ffc3;
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 20px #00ffc3;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .trail {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: #00ffc3;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.5;
+      z-index: 9998;
     }
   </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <h1>Initializing Web3 + AI System...</h1>
-</div>
+<div id="loader"><h1>Loading Himanshu...</h1></div>
 
 <div class="bg"></div>
+<div class="cursor"></div>
 
 <div class="main">
 
-  <!-- TYPING -->
-  <h1 id="typing"></h1>
-  <p>Web3 + AI Builder | Building in Public</p>
+<h1 id="typing"></h1>
+<p>Web3 + AI Builder</p>
 
-  <button class="btn" onclick="window.location.href='https://x.com/HimanshuWeb3_17'">
-    💼 Hire Me
-  </button>
+<button class="btn" onclick="window.location.href='https://x.com/HimanshuWeb3_17'">
+Hire Me
+</button>
 
-  <div class="grid">
+<div class="grid">
 
-    <div class="card">
-      <h2>🧠 About</h2>
-      <p>Learning Web3, AI & building daily in public.</p>
-    </div>
+<div class="card"><h2>About</h2><p>Building Web3 + AI</p></div>
 
-    <div class="card">
-      <h2>🪙 Crypto</h2>
-      <p id="btc">BTC: Loading...</p>
-      <p id="eth">ETH: Loading...</p>
-    </div>
-
-    <div class="card">
-      <h2>📊 GitHub</h2>
-      <img src="https://github-readme-stats.vercel.app/api?username=himanshupal1705hp-svg&theme=dark" width="100%">
-    </div>
-
-    <div class="card">
-      <h2>📊 Proof of Work</h2>
-      <p>Daily Web3 posts</p>
-      <p>Airdrop explorer</p>
-      <p>Learning dev</p>
-    </div>
-
-  </div>
-
+<div class="card">
+<h2>Crypto</h2>
+<p id="btc">Loading...</p>
+<p id="eth">Loading...</p>
 </div>
 
-<!-- CHATBOT -->
+<div class="card">
+<h2>GitHub</h2>
+<img src="https://github-readme-stats.vercel.app/api?username=himanshupal1705hp-svg&theme=dark" width="100%">
+</div>
+
+<div class="card"><h2>POW</h2><p>Daily Web3 work</p></div>
+
+</div>
+</div>
+
 <div id="chatbox">
-  <p><b>AI 🤖</b></p>
-  <input id="userInput" placeholder="Ask..." />
-  <button onclick="reply()">Send</button>
-  <p id="botReply"></p>
+<p><b>AI 🤖</b></p>
+<input id="userInput">
+<button onclick="reply()">Send</button>
+<p id="botReply"></p>
 </div>
 
 <script>
-/* LOADER */
-window.addEventListener("load", function() {
-  setTimeout(() => {
-    document.getElementById("loader").style.display = "none";
-  }, 2000);
-});
 
-/* PARALLAX */
-window.addEventListener("scroll", function() {
-  let scroll = window.scrollY;
-  document.querySelector(".bg").style.transform =
-    "translateY(" + scroll * 0.3 + "px)";
-});
+/* Loader */
+window.onload = () => {
+  setTimeout(() => loader.style.display="none",1500);
+};
 
-/* TYPING EFFECT */
-const text = "Hi, I'm Himanshu 🚀";
-let i = 0;
-function typeEffect() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeEffect, 60);
+/* Typing */
+let text="Hi, I'm Himanshu 🚀",i=0;
+function type(){
+ if(i<text.length){
+  typing.innerHTML+=text[i++];
+  setTimeout(type,50);
+ }
+}
+type();
+
+/* Scroll */
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+ cards.forEach(c=>{
+  if(c.getBoundingClientRect().top<window.innerHeight-50){
+   c.classList.add("show");
   }
-}
-typeEffect();
+ });
+});
 
-/* SCROLL ANIMATION */
-const cards = document.querySelectorAll(".card");
-function reveal() {
-  let windowHeight = window.innerHeight;
-  cards.forEach(card => {
-    let top = card.getBoundingClientRect().top;
-    if (top < windowHeight - 50) {
-      card.classList.add("show");
-    }
-  });
-}
-window.addEventListener("scroll", reveal);
-reveal();
-
-/* CRYPTO API */
-async function getPrices() {
-  let res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
-  let data = await res.json();
-  document.getElementById("btc").innerText = "BTC: $" + data.bitcoin.usd;
-  document.getElementById("eth").innerText = "ETH: $" + data.ethereum.usd;
+/* Crypto */
+async function getPrices(){
+ try{
+  let r=await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
+  let d=await r.json();
+  btc.innerText="BTC: $"+d.bitcoin.usd;
+  eth.innerText="ETH: $"+d.ethereum.usd;
+ }catch{
+  btc.innerText="Error";
+  eth.innerText="Error";
+ }
 }
 getPrices();
-setInterval(getPrices, 10000);
 
-/* 🤖 FIXED AI CHATBOT */
-async function reply() {
-  let input = document.getElementById("userInput").value;
-  let output = document.getElementById("botReply");
+/* AI FIX */
+async function reply(){
+ let input=userInput.value;
+ let output=botReply;
 
-  if (!input) {
-    output.innerText = "Type something...";
-    return;
-  }
+ if(!input){
+  output.innerText="Type something";
+  return;
+ }
 
-  output.innerText = "Thinking... 🤖";
+ output.innerText="Thinking...";
 
-  try {
-    let res = await fetch(
-      "https://api.affiliateplus.xyz/api/chatbot?message=" + encodeURIComponent(input) + "&botname=HimanshuAI&ownername=Himanshu"
-    );
-
-    let data = await res.json();
-    output.innerText = data.message || "No reply 😅";
-
-  } catch {
-    output.innerText = "Error 🚨 API issue";
-  }
+ try{
+  let r=await fetch("https://api.affiliateplus.xyz/api/chatbot?message="+encodeURIComponent(input));
+  let d=await r.json();
+  output.innerText=d.message || "No reply";
+ }catch{
+  output.innerText="AI offline 😅";
+ }
 }
+
+/* Cursor */
+if(window.innerWidth>768){
+ document.addEventListener("mousemove",e=>{
+  let c=document.querySelector(".cursor");
+  c.style.left=e.clientX+"px";
+  c.style.top=e.clientY+"px";
+
+  let t=document.createElement("div");
+  t.className="trail";
+  t.style.left=e.clientX+"px";
+  t.style.top=e.clientY+"px";
+  document.body.appendChild(t);
+
+  setTimeout(()=>t.remove(),400);
+ });
+}
+
 </script>
 
 </body>
