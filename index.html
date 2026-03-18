@@ -1,47 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Himanshu Portfolio</title>
+  <title>Himanshu Web3 Portfolio</title>
 
   <style>
     body {
-      background: black;
-      color: #00ffcc;
+      background: #050505;
+      color: #00ffc3;
       font-family: monospace;
       text-align: center;
-      overflow-x: hidden;
     }
 
     h1 {
-      margin-top: 80px;
-      font-size: 40px;
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #00ffcc; }
-      to { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc; }
-    }
-
-    .card {
-      background: #0a0a0a;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #00ffcc33;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffcc55;
+      margin-top: 60px;
+      font-size: 42px;
+      text-shadow: 0 0 10px #00ffc3, 0 0 30px #00ffc3;
     }
 
     .type {
-      border-right: 2px solid #00ffcc;
-      display: inline-block;
+      border-right: 2px solid #00ffc3;
       white-space: nowrap;
       overflow: hidden;
+      display: inline-block;
       animation: typing 3s steps(30), blink 0.5s infinite;
     }
 
@@ -53,44 +33,102 @@
     @keyframes blink {
       50% { border-color: transparent }
     }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      background: #0a0a0a;
+      margin: 15px;
+      padding: 20px;
+      width: 280px;
+      border-radius: 15px;
+      border: 1px solid #00ffc322;
+      box-shadow: 0 0 10px #00ffc322;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffc3aa;
+    }
+
+    .stat {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+
+    a {
+      color: #00ffc3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-shadow: 0 0 10px #00ffc3;
+    }
   </style>
 </head>
 
 <body>
 
 <h1>Hi, I'm Himanshu 🚀</h1>
-<p class="type">Web3 Explorer | Building in Public</p>
+<p class="type">Building in Public | Web3 | Future Dev</p>
 
-<div class="card">
-  <h2>⚡ Skills</h2>
-  <p>Learning React, Web3, Airdrops, Dev Basics</p>
+<div class="container">
+
+  <!-- 🧠 LIVE STATS -->
+  <div class="card">
+    <h2>🧠 Live Stats</h2>
+    <p class="stat">50+</p>
+    <p>Daily X Posts</p>
+
+    <p class="stat">10+</p>
+    <p>Projects Explored</p>
+
+    <p class="stat">100%</p>
+    <p>Learning Mode</p>
+  </div>
+
+  <!-- 🪙 CRYPTO DASHBOARD -->
+  <div class="card">
+    <h2>🪙 Crypto Mode</h2>
+    <p>Tracking Airdrops 🚀</p>
+    <p>Testing Web3 Apps ⚡</p>
+    <p>Exploring Ecosystems 🌍</p>
+  </div>
+
+  <!-- 📊 PROOF OF WORK -->
+  <div class="card">
+    <h2>📊 Proof of Work</h2>
+    <ul>
+      <li>Active on X daily</li>
+      <li>Engaging in Web3 communities</li>
+      <li>Learning dev + tools</li>
+    </ul>
+  </div>
+
+  <!-- 🔗 SOCIAL -->
+  <div class="card">
+    <h2>🔗 Connect</h2>
+    <p><a href="https://x.com/HimanshuWeb3_17" target="_blank">X Profile</a></p>
+    <p><a href="#">GitHub (Add later)</a></p>
+  </div>
+
 </div>
 
-<div class="card">
-  <h2>🚀 Projects</h2>
-  <p>Sharing my Web3 journey & experiments</p>
-</div>
-
-</body>
-</html>
-<div class="card">
-  <h2>📊 Proof of Work</h2>
-  <ul>
-    <li>Active on X (daily Web3 posts)</li>
-    <li>Participated in airdrops</li>
-    <li>Learning dev + Web3 tools</li>
-  </ul>
-</div>
-<div class="card">
-  <h2>🐦 My X Profile</h2>
-  <a href="https://x.com/HimanshuWeb3_17" target="_blank">
-    Visit My Profile
-  </a>
-</div>
+<!-- 🐦 TWITTER EMBED -->
 <script async src="https://platform.twitter.com/widgets.js"></script>
 
 <div class="card">
+  <h2>🐦 Latest Activity</h2>
   <blockquote class="twitter-tweet">
     <a href="https://twitter.com/HimanshuWeb3_17"></a>
   </blockquote>
 </div>
+
+</body>
+</html>
