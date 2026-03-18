@@ -12,7 +12,11 @@
       overflow-x: hidden;
     }
 
-    /* 🌌 ANIME BACKGROUND */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* 🌌 BACKGROUND */
     .bg {
       position: fixed;
       width: 100%;
@@ -35,7 +39,7 @@
                    0 0 60px #00ffc3;
     }
 
-    /* 📦 GRID */
+    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -43,7 +47,7 @@
       margin-top: 30px;
     }
 
-    /* 💎 CARDS */
+    /* CARDS */
     .card {
       background: rgba(10,10,10,0.7);
       backdrop-filter: blur(12px);
@@ -51,7 +55,14 @@
       border-radius: 15px;
       border: 1px solid #00ffc355;
       box-shadow: 0 0 15px #00ffc322;
-      transition: 0.3s;
+      transition: all 0.6s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card:hover {
@@ -59,7 +70,7 @@
       box-shadow: 0 0 25px #00ffc3aa;
     }
 
-    /* 🎯 BUTTON */
+    /* BUTTON */
     .btn {
       margin-top: 15px;
       padding: 12px 25px;
@@ -71,7 +82,7 @@
       box-shadow: 0 0 10px #00ffc3;
     }
 
-    /* 🤖 CHATBOX */
+    /* CHATBOX */
     #chatbox {
       position: fixed;
       bottom: 20px;
@@ -85,13 +96,13 @@
     }
 
     input {
-      width: 80%;
+      width: 75%;
       padding: 8px;
       border-radius: 5px;
       border: none;
     }
 
-    /* 🎬 LOADER */
+    /* LOADER */
     #loader {
       position: fixed;
       width: 100%;
@@ -118,7 +129,7 @@
 
 <body>
 
-<!-- 🎬 INTRO -->
+<!-- LOADER -->
 <div id="loader">
   <h1>Initializing Web3 + AI System...</h1>
 </div>
@@ -127,7 +138,8 @@
 
 <div class="main">
 
-  <h1>Hi, I'm Himanshu 🚀</h1>
+  <!-- TYPING -->
+  <h1 id="typing"></h1>
   <p>Web3 + AI Builder | Building in Public</p>
 
   <button class="btn" onclick="window.location.href='https://x.com/HimanshuWeb3_17'">
@@ -163,7 +175,7 @@
 
 </div>
 
-<!-- 🤖 CHATBOT -->
+<!-- CHATBOT -->
 <div id="chatbox">
   <p><b>AI 🤖</b></p>
   <input id="userInput" placeholder="Ask..." />
@@ -172,39 +184,79 @@
 </div>
 
 <script>
-/* 🎬 Loader */
+/* LOADER */
 window.addEventListener("load", function() {
   setTimeout(() => {
     document.getElementById("loader").style.display = "none";
   }, 2000);
 });
 
-/* 🌌 Parallax */
+/* PARALLAX */
 window.addEventListener("scroll", function() {
   let scroll = window.scrollY;
   document.querySelector(".bg").style.transform =
     "translateY(" + scroll * 0.3 + "px)";
 });
 
-/* 🪙 Crypto API */
+/* TYPING EFFECT */
+const text = "Hi, I'm Himanshu 🚀";
+let i = 0;
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 60);
+  }
+}
+typeEffect();
+
+/* SCROLL ANIMATION */
+const cards = document.querySelectorAll(".card");
+function reveal() {
+  let windowHeight = window.innerHeight;
+  cards.forEach(card => {
+    let top = card.getBoundingClientRect().top;
+    if (top < windowHeight - 50) {
+      card.classList.add("show");
+    }
+  });
+}
+window.addEventListener("scroll", reveal);
+reveal();
+
+/* CRYPTO API */
 async function getPrices() {
   let res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
   let data = await res.json();
-
   document.getElementById("btc").innerText = "BTC: $" + data.bitcoin.usd;
   document.getElementById("eth").innerText = "ETH: $" + data.ethereum.usd;
 }
 getPrices();
 setInterval(getPrices, 10000);
 
-/* 🤖 AI CHATBOT (FREE API SAFE) */
+/* 🤖 FIXED AI CHATBOT */
 async function reply() {
   let input = document.getElementById("userInput").value;
+  let output = document.getElementById("botReply");
 
-  let res = await fetch("https://api.affiliateplus.xyz/api/chatbot?message=" + input + "&botname=HimanshuAI&ownername=Himanshu");
+  if (!input) {
+    output.innerText = "Type something...";
+    return;
+  }
 
-  let data = await res.json();
-  document.getElementById("botReply").innerText = data.message;
+  output.innerText = "Thinking... 🤖";
+
+  try {
+    let res = await fetch(
+      "https://api.affiliateplus.xyz/api/chatbot?message=" + encodeURIComponent(input) + "&botname=HimanshuAI&ownername=Himanshu"
+    );
+
+    let data = await res.json();
+    output.innerText = data.message || "No reply 😅";
+
+  } catch {
+    output.innerText = "Error 🚨 API issue";
+  }
 }
 </script>
 
