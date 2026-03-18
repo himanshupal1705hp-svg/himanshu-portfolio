@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Himanshu Web3 Portfolio</title>
+  <title>Himanshu AI Web3 Portfolio</title>
 
   <style>
     body {
       margin: 0;
-      background: black;
+      background: #050505;
       color: #00ffc3;
       font-family: monospace;
       text-align: center;
-      overflow-x: hidden;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
     }
 
     h1 {
-      margin-top: 80px;
-      font-size: 42px;
+      margin-top: 50px;
       text-shadow: 0 0 20px #00ffc3;
     }
 
@@ -36,9 +27,8 @@
       background: #0a0a0a;
       margin: 15px;
       padding: 20px;
-      width: 280px;
+      width: 300px;
       border-radius: 15px;
-      border: 1px solid #00ffc322;
       box-shadow: 0 0 15px #00ffc322;
       transition: 0.3s;
     }
@@ -49,102 +39,102 @@
     }
 
     .btn {
-      padding: 12px 25px;
-      border: none;
+      padding: 10px 20px;
       background: #00ffc3;
       color: black;
+      border: none;
       border-radius: 10px;
-      font-weight: bold;
       cursor: pointer;
-      margin-top: 10px;
     }
 
-    .btn:hover {
-      box-shadow: 0 0 15px #00ffc3;
+    /* 🤖 Chatbot */
+    #chatbox {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 250px;
+      background: black;
+      border: 1px solid #00ffc3;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
     }
   </style>
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
+<h1>🤖 Himanshu AI Web3 Portfolio</h1>
+<p>Building in Public | Web3 + AI</p>
 
-<h1>Hi, I'm Himanshu 🚀</h1>
-<p>Web3 Builder | Learning in Public</p>
-
-<!-- 🎯 HIRE ME BUTTON -->
 <button class="btn" onclick="window.location.href='https://x.com/HimanshuWeb3_17'">
-  💼 Hire Me
+💼 Hire Me
 </button>
 
 <div class="container">
 
-  <!-- 🧠 GITHUB STATS -->
+  <!-- 🧠 AI SUMMARY -->
   <div class="card">
-    <h2>🧠 GitHub Stats</h2>
+    <h2>🧠 About Me</h2>
+    <p>I’m Himanshu, learning Web3, building in public, and exploring dev + AI daily.</p>
+  </div>
+
+  <!-- 🪙 LIVE CRYPTO -->
+  <div class="card">
+    <h2>🪙 Crypto Prices</h2>
+    <p id="btc">BTC: Loading...</p>
+    <p id="eth">ETH: Loading...</p>
+  </div>
+
+  <!-- 📊 GITHUB -->
+  <div class="card">
+    <h2>📊 GitHub</h2>
     <img src="https://github-readme-stats.vercel.app/api?username=himanshupal1705hp-svg&theme=dark" width="100%">
   </div>
 
-  <!-- 📊 POW -->
+  <!-- 🐦 AUTO X -->
   <div class="card">
-    <h2>📊 Proof of Work</h2>
-    <p>Daily Web3 posts</p>
-    <p>Airdrop hunter</p>
-    <p>Learning dev</p>
-  </div>
-
-  <!-- 🪙 CRYPTO -->
-  <div class="card">
-    <h2>🪙 Crypto Mode</h2>
-    <p>Tracking BTC & Airdrops</p>
-    <p>Exploring ecosystems</p>
+    <h2>🐦 Latest Activity</h2>
+    <a href="https://x.com/HimanshuWeb3_17" target="_blank">View My X</a>
   </div>
 
 </div>
 
-<!-- 🔥 PARTICLE ANIMATION -->
+<!-- 🤖 CHATBOT -->
+<div id="chatbox">
+  <p><b>AI Bot 🤖</b></p>
+  <input id="userInput" placeholder="Ask me..." />
+  <button onclick="reply()">Send</button>
+  <p id="botReply"></p>
+</div>
+
 <script>
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
+async function getPrices() {
+  let res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
+  let data = await res.json();
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for (let i = 0; i < 100; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2,
-    d: Math.random() * 2
-  });
+  document.getElementById("btc").innerText = "BTC: $" + data.bitcoin.usd;
+  document.getElementById("eth").innerText = "ETH: $" + data.ethereum.usd;
 }
+getPrices();
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#00ffc3";
+// 🤖 Simple AI replies
+function reply() {
+  let input = document.getElementById("userInput").value.toLowerCase();
+  let reply = "I'm learning Web3 🚀";
 
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fill();
-  });
+  if (input.includes("who")) reply = "I'm Himanshu, Web3 builder.";
+  if (input.includes("skills")) reply = "Learning Web3, React, and AI.";
+  if (input.includes("contact")) reply = "Reach me on X.";
 
-  update();
+  document.getElementById("botReply").innerText = reply;
 }
-
-function update() {
-  particles.forEach(p => {
-    p.y += p.d;
-    if (p.y > canvas.height) {
-      p.y = 0;
-      p.x = Math.random() * canvas.width;
-    }
-  });
-}
-
-setInterval(draw, 30);
 </script>
 
 </body>
