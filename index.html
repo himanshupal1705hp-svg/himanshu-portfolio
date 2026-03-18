@@ -1,59 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Himanshu AI Web3 Portfolio</title>
+  <title>Himanshu Portfolio</title>
 
   <style>
     body {
       margin: 0;
-      background: #050505;
-      color: #00ffc3;
       font-family: monospace;
-      text-align: center;
+      color: white;
+      background: black;
+      overflow-x: hidden;
+    }
+
+    /* 🌌 BACKGROUND IMAGE */
+    .bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1608889175123-8ee362201f81?q=80&w=2070&auto=format&fit=crop') no-repeat center/cover;
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    /* 🧠 MAIN CONTAINER */
+    .main {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
     }
 
     h1 {
-      margin-top: 50px;
+      font-size: 42px;
       text-shadow: 0 0 20px #00ffc3;
     }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    /* 📦 CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
     }
 
     .card {
-      background: #0a0a0a;
-      margin: 15px;
+      background: rgba(10,10,10,0.7);
+      backdrop-filter: blur(10px);
       padding: 20px;
-      width: 300px;
       border-radius: 15px;
-      box-shadow: 0 0 15px #00ffc322;
+      border: 1px solid #00ffc333;
+      box-shadow: 0 0 10px #00ffc322;
       transition: 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.05);
+      transform: translateY(-5px);
       box-shadow: 0 0 25px #00ffc3aa;
     }
 
     .btn {
+      margin-top: 15px;
       padding: 10px 20px;
       background: #00ffc3;
-      color: black;
       border: none;
       border-radius: 10px;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    /* 🤖 Chatbot */
+    /* 🤖 CHATBOX */
     #chatbox {
       position: fixed;
       bottom: 20px;
       right: 20px;
       width: 250px;
-      background: black;
+      background: rgba(0,0,0,0.8);
       border: 1px solid #00ffc3;
       border-radius: 10px;
       padding: 10px;
@@ -70,46 +90,50 @@
 
 <body>
 
-<h1>🤖 Himanshu AI Web3 Portfolio</h1>
-<p>Building in Public | Web3 + AI</p>
+<div class="bg"></div>
 
-<button class="btn" onclick="window.location.href='https://x.com/HimanshuWeb3_17'">
-💼 Hire Me
-</button>
+<div class="main">
 
-<div class="container">
+  <h1>Hi, I'm Himanshu 🚀</h1>
+  <p>Web3 + AI Builder | Building in Public</p>
 
-  <!-- 🧠 AI SUMMARY -->
-  <div class="card">
-    <h2>🧠 About Me</h2>
-    <p>I’m Himanshu, learning Web3, building in public, and exploring dev + AI daily.</p>
-  </div>
+  <button class="btn" onclick="window.location.href='https://x.com/HimanshuWeb3_17'">
+    💼 Hire Me
+  </button>
 
-  <!-- 🪙 LIVE CRYPTO -->
-  <div class="card">
-    <h2>🪙 Crypto Prices</h2>
-    <p id="btc">BTC: Loading...</p>
-    <p id="eth">ETH: Loading...</p>
-  </div>
+  <div class="grid">
 
-  <!-- 📊 GITHUB -->
-  <div class="card">
-    <h2>📊 GitHub</h2>
-    <img src="https://github-readme-stats.vercel.app/api?username=himanshupal1705hp-svg&theme=dark" width="100%">
-  </div>
+    <div class="card">
+      <h2>🧠 About</h2>
+      <p>Learning Web3, AI & building daily in public.</p>
+    </div>
 
-  <!-- 🐦 AUTO X -->
-  <div class="card">
-    <h2>🐦 Latest Activity</h2>
-    <a href="https://x.com/HimanshuWeb3_17" target="_blank">View My X</a>
+    <div class="card">
+      <h2>🪙 Crypto</h2>
+      <p id="btc">BTC: Loading...</p>
+      <p id="eth">ETH: Loading...</p>
+    </div>
+
+    <div class="card">
+      <h2>📊 GitHub</h2>
+      <img src="https://github-readme-stats.vercel.app/api?username=himanshupal1705hp-svg&theme=dark" width="100%">
+    </div>
+
+    <div class="card">
+      <h2>📊 Proof of Work</h2>
+      <p>Daily Web3 posts</p>
+      <p>Airdrop explorer</p>
+      <p>Learning dev</p>
+    </div>
+
   </div>
 
 </div>
 
 <!-- 🤖 CHATBOT -->
 <div id="chatbox">
-  <p><b>AI Bot 🤖</b></p>
-  <input id="userInput" placeholder="Ask me..." />
+  <p><b>AI 🤖</b></p>
+  <input id="userInput" placeholder="Ask..." />
   <button onclick="reply()">Send</button>
   <p id="botReply"></p>
 </div>
@@ -124,16 +148,13 @@ async function getPrices() {
 }
 getPrices();
 
-// 🤖 Simple AI replies
-function reply() {
-  let input = document.getElementById("userInput").value.toLowerCase();
-  let reply = "I'm learning Web3 🚀";
+async function reply() {
+  let input = document.getElementById("userInput").value;
 
-  if (input.includes("who")) reply = "I'm Himanshu, Web3 builder.";
-  if (input.includes("skills")) reply = "Learning Web3, React, and AI.";
-  if (input.includes("contact")) reply = "Reach me on X.";
+  let res = await fetch("https://api.affiliateplus.xyz/api/chatbot?message=" + input + "&botname=HimanshuAI");
 
-  document.getElementById("botReply").innerText = reply;
+  let data = await res.json();
+  document.getElementById("botReply").innerText = data.message;
 }
 </script>
 
